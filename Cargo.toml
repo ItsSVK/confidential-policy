@@ -1,0 +1,24 @@
+[package]
+name = "confidential-policy"
+version = "0.1.0"
+description = "Policy checks for Solana programs that pay out of Token-2022 confidential balances: an admin-approved payroll run (exact recipients, exact hidden amounts via commitment pinning, each entry once). No Anchor dependency."
+edition = "2021"
+rust-version = "1.89.0"
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["solana", "token-2022", "confidential", "zero-knowledge", "payroll"]
+categories = ["cryptography"]
+repository = "https://github.com/itssvk/confidential-policy"
+
+[lib]
+name = "confidential_policy"
+path = "src/lib.rs"
+
+[dependencies]
+five8 = "1.0.0"
+solana-sha256-hasher = { version = "3.1.0", features = ["sha2"] }
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = [
+    'cfg(target_os, values("solana"))',
+] }
